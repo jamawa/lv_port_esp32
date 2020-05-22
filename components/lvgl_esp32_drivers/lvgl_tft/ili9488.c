@@ -119,6 +119,8 @@ void ili9488_init(void)
 #elif defined CONFIG_LVGL_DISPLAY_ORIENTATION_PORTRAIT_INVERTED
 #pragma message "ILI9488 - PORTRAIT Inverted"
 	uint8_t data[] = {0x88};
+#else
+        uint8_t data[] = {0x28};
 #endif
 
 	ili9488_send_cmd(0x36);
