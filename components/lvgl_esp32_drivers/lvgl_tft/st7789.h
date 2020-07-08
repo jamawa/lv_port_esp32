@@ -30,10 +30,10 @@ extern "C"
 #endif
 
 /* ST7789 commands */
-#define ST7789_NOP      0x00
-#define ST7789_SWRESET  0x01
-#define ST7789_RDDID    0x04
-#define ST7789_RDDST    0x09
+#define ST7789_NOP      	0x00
+#define ST7789_SWRESET  	0x01
+#define ST7789_RDDID    	0x04
+#define ST7789_RDDST    	0x09
 
 #define ST7789_RDDPM        0x0A    // Read display power mode
 #define ST7789_RDD_MADCTL   0x0B    // Read display MADCTL
@@ -55,7 +55,6 @@ extern "C"
 #define ST7789_CASET        0x2A
 #define ST7789_RASET        0x2B
 #define ST7789_RAMWR        0x2C
-#define ST7789_RGBSET       0x2D    // Color setting for 4096, 64K and 262K colors
 #define ST7789_RAMRD        0x2E
 
 #define ST7789_PTLAR        0x30
@@ -63,12 +62,31 @@ extern "C"
 #define ST7789_TEOFF        0x34    // Tearing effect line off
 #define ST7789_TEON         0x35    // Tearing effect line on
 #define ST7789_MADCTL       0x36    // Memory data access control
+#define ST7789_VSCRSADD		0x37	// Vertical scrolling start address
 #define ST7789_IDMOFF       0x38    // Idle mode off
 #define ST7789_IDMON        0x39    // Idle mode on
+#define ST7789_COLMOD		0x3A	// Interface pixel format
 #define ST7789_RAMWRC       0x3C    // Memory write continue (ST7789V)
 #define ST7789_RAMRDC       0x3E    // Memory read continue (ST7789V)
-#define ST7789_COLMOD       0x3A
 
+#define ST7789_TESCAN		0x44	// Set tear scanline
+#define ST7789_RDTESCAN		0x45	// Get tear scanline
+
+#define ST7789_WRDISBV		0x51	// Write display brightness
+#define ST7789_RDDISBV		0x52	// Read display brightness
+#define ST7789_WRCTRLD		0x53	// Write CTRL display
+#define ST7789_RDCTRLD		0x54	// Read CTRL display
+#define ST7789_WRCACE		0x55	// Write content adaptive brightness control and Color enhancemnet
+#define ST7789_RDCABC		0x56	// Read content adaptive brightness control
+#define ST7789_WRCABCMB		0x5E	// Write CABC minimum brightness
+#define ST7789_RDCABCMB		0x5F	// Read CABC minimum brightness
+#define ST7789_RDABCSDR		0x68	// Read Automatic Brightness Control Self-Diagnostic Result
+#define ST7789_RDID1		0xDA	// Read ID1
+#define ST7789_RDID2		0xDB	// Read ID2
+#define ST7789_RDID3		0xDC	// Read ID3
+
+
+// System Function Table 2 (needs CMD2EN EN bit set to modify):
 #define ST7789_RAMCTRL      0xB0    // RAM control
 #define ST7789_RGBCTRL      0xB1    // RGB control
 #define ST7789_PORCTRL      0xB2    // Porch control
@@ -106,6 +124,7 @@ extern "C"
 #define ST7789_PROMACT      0xFE    // Program action
 
 void st7789_init(void);
+void st7789_set_display_area(uint16_t offset_x, uint16_t offset_y);
 void st7789_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t *color_map);
 void st7789_enable_backlight(bool backlight);
 
