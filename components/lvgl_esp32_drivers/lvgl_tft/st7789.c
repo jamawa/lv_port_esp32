@@ -14,14 +14,12 @@
 #include "disp_spi.h"
 #include "driver/gpio.h"
 
-#include "stdlib.h"
 #include "math.h"
 
 /*********************
  *      DEFINES
  *********************/
 #define TAG "st7789"
-
 /**********************
  *      TYPEDEFS
  **********************/
@@ -120,7 +118,6 @@ void st7789_init(void)
 	st7789_set_orientation(CONFIG_LVGL_DISPLAY_ORIENTATION);
 	st7789_enable_backlight(true);
 }
-
 
 void st7789_enable_backlight(bool backlight)
 {
@@ -245,4 +242,3 @@ static void st7789_set_orientation(uint8_t orientation)
     st7789_send_cmd(ST7789_MADCTL);
     st7789_send_data((void *) &data[orientation], 1);
 }
-
