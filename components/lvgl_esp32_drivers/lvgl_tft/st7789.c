@@ -139,8 +139,6 @@ void st7789_enable_backlight(bool backlight)
 void st7789_flush(lv_disp_drv_t * drv, const lv_area_t * area, lv_color_t * color_map)
 {
     uint8_t data[4] = {0};
-    ESP_LOGI(TAG, "Flushing area (%d,%d)-(%d,%d) at offset (%d,%d)",
-    		area->x1, area->y1, area->x2, area->y2, display_offset_x, display_offset_y);
 
     // Adjust area for actual display location within the ST7789 video buffer
     uint16_t offsetx1 = display_offset_x + area->x1;
